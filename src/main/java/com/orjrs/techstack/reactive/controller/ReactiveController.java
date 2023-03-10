@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -21,8 +22,9 @@ import java.util.List;
  * @date 2023-03-06 22:23:10
  */
 @Slf4j
+@RestController
 public class ReactiveController {
-    @GetMapping("/slow-service-tweets")
+    @GetMapping("/reactive/slow-service-tweets")
     private List<Tweet> getAllTweets() {
         // delay
         try {
@@ -69,7 +71,7 @@ public class ReactiveController {
     }
 
     private String getSlowServiceUri() {
-        return "http://localhost:9000/reactive/slow-service-tweets";
+        return "http://localhost:8500/reactive/slow-service-tweets";
     }
 
 }
